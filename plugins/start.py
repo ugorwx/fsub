@@ -187,8 +187,6 @@ async def send_text(client: Bot, message: Message):
         broadcast_msg = message.reply_to_message
         total = 0
         successful = 0
-        blocked = 0
-        deleted = 0
         unsuccessful = 0
 
         please_wait = await message.reply(
