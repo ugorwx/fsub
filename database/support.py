@@ -1,6 +1,6 @@
 #Part of - #CodeXBotz #mrismanaziz
 
-import asyncio
+from asyncio import sleep
 
 from pyrogram.errors import FloodWait
 
@@ -16,7 +16,7 @@ async def users_info(bot):
         try:
             name = await bot.send_chat_action(int(id[0]), "typing")
         except FloodWait as e:
-            await asyncio.sleep(e.x)
+            await sleep(e.value)
         except Exception:
             pass
         if bool(name):

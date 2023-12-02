@@ -41,7 +41,7 @@ async def get_bot_logs(client: Bot, m: Message):
 
 @Bot.on_message(filters.command("vars") & filters.user(ADMINS))
 async def varsFunc(client: Bot, message: Message):
-    Man = await message.reply_text("Tunggu Sebentar...")
+    msg = await message.reply_text("Tunggu Sebentar...")
     text = f"""
 <b>MANDATORY VARS</b>
 ADMINS = <code>{ADMINS}</code>
@@ -60,4 +60,4 @@ FORCE_SUB_4 = <code>{FORCE_SUB_4}</code>
 START_MESSAGE = <code>{START_MESSAGE}</code>
 FORCE_MESSAGE = <code>{FORCE_MESSAGE}</code>
 """
-    await Man.edit_text(text)
+    await msg.edit_text(text)

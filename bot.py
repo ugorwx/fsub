@@ -1,9 +1,9 @@
 #CodeXBotz #mrismanaziz
 
-import pyromod.listen
 import sys
 
-from pyrogram import Client, enums
+from pyromod.listen import Client
+from pyrogram.enums import ParseMode
 
 from config import (
     API_HASH,
@@ -27,6 +27,7 @@ class Bot(Client):
             plugins={"root": "plugins"},
             bot_token=BOT_TOKEN,
             in_memory=True,
+            parse_mode=ParseMode.HTML
         )
         self.LOGGER = LOGGER
 
@@ -144,7 +145,6 @@ class Bot(Client):
             )
             sys.exit()
 
-        self.set_parse_mode(enums.ParseMode.HTML)
         self.LOGGER(__name__).info(
             "Bot Aktif!\n\n"
         )
