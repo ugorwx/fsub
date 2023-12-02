@@ -207,6 +207,7 @@ async def send_text(client: Bot, message: Message):
                 except:
                     await delete_user(chat_id)
                     unsuccessful += 1
+                    continue
                 total += 1
         status = f"""
 Status Broadcast
