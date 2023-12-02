@@ -15,7 +15,7 @@ from config import (
 )
 from database.sql import add_user, delete_user, full_userbase, query_msg
 from pyrogram import filters
-from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked
+from pyrogram.errors import FloodWait
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from helper_func import(
@@ -204,23 +204,16 @@ async def send_text(client: Bot, message: Message):
                     await sleep(e.value)
                     await broadcast_msg.copy(chat_id, protect_content=RESTRICT)
                     successful += 1
-                except UserIsBlocked:
-                    await delete_user(chat_id)
-                    blocked += 1
-                except InputUserDeactivated:
-                    await delete_user(chat_id)
-                    deleted += 1
                 except:
+                    await delete_user(chat_id)
                     unsuccessful += 1
-                    pass
                 total += 1
         status = f"""
-Berhasil!
+Status Broadcast
 Pengguna: {total}
 Berhasil: {successful}
 Gagal: {unsuccessful}
-Diblokir: {blocked}
-Akun Terhapus: {deleted}"""
+"""
         return await please_wait.edit(status)
     else:
         msg = await message.reply(
